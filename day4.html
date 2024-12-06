@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function createXmasTree(height, ornament) {
+        let blank = height - 1
+        let char = 1
+        let tree = "";
+
+        for(let i=1; i<= height; i++){
+            tree += "_".repeat(blank) + ornament.repeat(char) + "_".repeat(blank)  + '\n'
+            blank --
+            char = char+2
+        }
+    
+            tree += "_".repeat(height -1) + "#" + "_".repeat(height -1) + '\n'
+            tree += "_".repeat(height -1) + "#" + "_".repeat(height -1)
+    
+  return tree
+}
+
+
+const tree = createXmasTree(5, '*')
+console.log(tree)
+/*
+____*____
+___***___
+__*****__
+_*******_
+*********
+____#____
+____#____
+*/
+
+</script>
+<body>
+    
+</body>
+</html>

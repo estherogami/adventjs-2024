@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function createFrame(names) {
+        let char = "*"
+        let char2= " "
+        let output= ""
+        let string = ""
+        let maxSize = 0;
+        let currentSizeDif = 0;
+
+        names.forEach(name => {
+            if (name.length > maxSize) maxSize = name.length
+        });
+
+
+        for ( let i = 0; i<= (names.length ); i++) {
+            if(i === 0) {
+                output = output.concat(char.repeat( maxSize + 4) + '\n')
+                currentSizeDif = maxSize - names[i].length +1;
+                output = output.concat(char + " " + names[i] + char2.repeat(currentSizeDif) + char  + '\n')
+            }else if (i === names.length ){
+                output = output.concat(char.repeat( maxSize + 4) )
+            }else{
+                currentSizeDif = maxSize - names[i].length + 1;
+                output = output.concat(char + " " +  names[i] + char2.repeat(currentSizeDif) + char  + '\n')
+            }
+        }
+        return output;
+        }
+        console.log(createFrame(['midu', 'madeval', 'educalvolpz']));
+
+
+
+
+        //Solucion mas eficiente por chatgpt
+//         function createFrame(names) {
+//     const borderChar = "*";
+//     const spaceChar = " ";
+
+//     // Determinar el tamaño máximo de los nombres
+//     const maxSize = Math.max(...names.map(name => name.length));
+
+//     // Crear la parte superior e inferior del marco
+//     const border = borderChar.repeat(maxSize + 4);
+
+//     // Construir las líneas del marco
+//     const lines = names.map(name => {
+//         const paddingSize = maxSize - name.length; // Espacio necesario
+//         return `${borderChar} ${name}${spaceChar.repeat(paddingSize + 1)}${borderChar}`;
+//     });
+
+//     // Combinar el marco completo
+//     return [border, ...lines, border].join("\n");
+// }
+
+// // Ejemplo de uso
+// const names = ["Alice", "Bob", "Cristina"];
+// console.log(createFrame(names));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

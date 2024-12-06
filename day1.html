@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function prepareGifts(gifts) {
+        let maxNum = 0;
+        gifts.forEach( gift => {
+            if(gift > maxNum) maxNum = gift;
+        });
+
+        const newGifts = [] 
+        let found;
+        for( let i = 1; i<= maxNum; i++){
+            found = (gifts.find( (gift) => gift == i))
+            if (found) newGifts.push(found);
+        }
+        
+        return newGifts
+    }
+
+    const gifts1 = [3, 1, 2, 3, 4, 2, 5]
+    console.log(prepareGifts(gifts1))
+
+    const gifts2 = [6, 5, 5, 5, 5]
+    console.log(prepareGifts(gifts2)) // [5, 6]
+
+    const gifts3 = []
+    console.log(prepareGifts(gifts3)) // []
+    // No hay regalos, la lista queda vacía
+</script>
+<body>
+    
+</body>
+</html>
