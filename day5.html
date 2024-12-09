@@ -10,10 +10,34 @@
  * @param {{ type: 'I' | 'R', size: number }[]} shoes
  * @returns {number[]} Available shoes 
  */
-function organizeShoes(shoes) {
-  return []
-}
+ function organizeShoes(shoes) {
+    const pairedItems = [];
+    const usedIndexes = []; // Array para rastrear índices ya emparejados
 
+    shoes.forEach((item, index) => {
+        const { type, size } = item;
+
+        // Saltar este zapato si ya está emparejado
+        if (usedIndexes.includes(index)) return;
+
+        // Encontrar un par compatible
+        const pairIndex = shoes.findIndex(
+            (i, idx) =>
+                idx !== index && // No comparar el mismo zapato
+                !usedIndexes.includes(idx) && // No usar zapatos ya emparejados
+                i.type !== type && // Tipos diferentes
+                i.size === size // Mismo tamaño
+        );
+
+        // Si se encontró un par, registrar el tamaño y marcar ambos como usados
+        if (pairIndex !== -1) {
+            pairedItems.push(size);
+            usedIndexes.push(index, pairIndex); // Marcar ambos índices como usados
+        }
+    });
+
+    return pairedItems;
+}
 
 const shoes = [
   { type: 'I', size: 38 },
@@ -23,7 +47,7 @@ const shoes = [
   { type: 'I', size: 42 }
 ]
 
-organizeShoes(shoes)
+// console.log(organizeShoes(shoes))
 // [38, 42]
 
 const shoes2 = [
@@ -33,6 +57,7 @@ const shoes2 = [
   { type: 'I', size: 38 },
   { type: 'R', size: 38 }
 ]
+ console.log(organizeShoes(shoes2))
 // [38, 38]
 
 </script>

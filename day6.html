@@ -1,0 +1,58 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <script>
+    function inBox(box) {
+    let boxCheck = false;
+    const regex = /^#.*\*.*#$/;
+
+    if(box[0].includes("*") || box[box.length -1].includes("*")) {
+        return false
+    }
+
+    for ( let i=0; i < box.length ; i++) {
+        if(regex.test(box[i])) {
+            return true
+        }
+    }
+    return boxCheck
+  }
+
+
+
+  console.log(inBox([
+  "###",
+  "#*#",
+  "###"
+])); // ➞ true
+
+console.log(inBox([
+  "####",
+  "#* #",
+  "#  #",
+  "####"
+])); // ➞ true
+
+console.log(inBox([
+  "#####",
+  "#   #",
+  "#  #*",
+  "#####"
+])); // ➞ false
+
+console.log(inBox([
+  "#####",
+  "#   #",
+  "#   #",
+  "#   #",
+  "#####"
+])); // ➞ false
+  </script>
+  <body>
+
+  </body>
+  </html>
