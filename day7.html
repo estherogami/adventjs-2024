@@ -6,7 +6,43 @@
     <title>Document</title>
 </head>
 <script>
-    
+function fixPackages(packages) {
+    let stack = []; // Creamos una pila vacía.
+
+    for (let char of packages) {
+        if (char === ')') {
+            // Cuando encontramos un ')', sacamos de la pila hasta encontrar '('.
+            let temp = '';
+            while (stack.length && stack[stack.length - 1] !== '(') {
+                temp += stack.pop(); // Agregamos a 'temp' lo que sacamos.
+            }
+            stack.pop(); // Quitamos el '(' de la pila.
+            stack.push(...temp); // Agregamos el string invertido de nuevo a la pila.
+        } else {
+            // Si no es ')', simplemente lo colocamos en la pila.
+            stack.push(char);
+        }
+    }
+
+    return stack.join(''); // Finalmente, convertimos la pila en un string.
+}
+
+console.log(fixPackages('a(cb)de'))
+// ➞ "abcde"
+// Volteamos "cb" dentro de los paréntesis
+
+console.log(fixPackages('a(bc(def)g)h'))
+// ➞ "agdefcbh"
+// 1º volteamos "def" → "fed", luego volteamos "bcfedg" → "gdefcb"
+
+console.log(fixPackages('abc(def(gh)i)jk'))
+// ➞ "abcighfedjk"
+// 1º volteamos "gh" → "hg", luego "defhgi" → "ighfed"
+
+console.log(fixPackages('a(b(c))e'))
+// ➞ "acbe"
+// 1º volteamos "c" → "c", luego "bc" → "cb"
+
 </script>
 <body>
     
